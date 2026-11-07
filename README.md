@@ -68,4 +68,4 @@ SpiceXL is an independent project by [@codeplayboy](https://github.com/codeplayb
 
 ## Release contents
 
-The release page contains only the Android APK and Windows installer. Screenshots and the short motion preview above are presentation materials; they are not additional app downloads.
+The uploaded app downloads are the Android APK and Windows installer. Screenshots and the short motion preview are presentation materials; this repository does not include private application source, credentials, or signing keys.
