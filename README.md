@@ -10,7 +10,7 @@
 
 Discover movies, series, anime, and family picks in a dark, cinematic experience for Android and Windows.
 
-[**Get SpiceXL 1.0.0**](https://github.com/codeplayboy/SpiceXL/releases/tag/v1.0.0) · [Windows setup guide](docs/INSTALLATION.md#windows) · [Android setup guide](docs/INSTALLATION.md#android)
+[**Get SpiceXL 1.0.9**](https://github.com/codeplayboy/SpiceXL/releases/tag/v1.0.9) · [Windows setup guide](docs/INSTALLATION.md#windows) · [Android setup guide](docs/INSTALLATION.md#android)
 
 <br />
 
@@ -54,10 +54,10 @@ Content and playback availability can vary by title, network, and region.
 
 ## Download
 
-Choose the installer for your device from the [SpiceXL v1.0.0 release](https://github.com/codeplayboy/SpiceXL/releases/tag/v1.0.0):
+Choose the installer for your device from the [SpiceXL v1.0.9 release](https://github.com/codeplayboy/SpiceXL/releases/tag/v1.0.9):
 
-- **[Download for Android](https://github.com/codeplayboy/SpiceXL/releases/download/v1.0.0/SpiceXL-Android-v1.0.0.apk)** — `SpiceXL-Android-v1.0.0.apk`
-- **[Download for Windows 64-bit](https://github.com/codeplayboy/SpiceXL/releases/download/v1.0.0/SpiceXL-Windows-Setup-v1.0.0.exe)** — `SpiceXL-Windows-Setup-v1.0.0.exe`
+- **[Download for Android](https://github.com/codeplayboy/SpiceXL/releases/download/v1.0.9/SpiceXL-Android-v1.0.9.apk)** — `SpiceXL-Android-v1.0.9.apk`
+- **[Download for Windows 64-bit](https://github.com/codeplayboy/SpiceXL/releases/download/v1.0.9/SpiceXL-Windows-Setup-v1.0.9.exe)** — `SpiceXL-Windows-Setup-v1.0.9.exe`
 
 Follow the illustrated [installation guide](docs/INSTALLATION.md) for the first launch and removal steps.
 You can verify either download against the published [SHA-256 checksums](docs/RELEASE_CHECKSUMS.txt).
