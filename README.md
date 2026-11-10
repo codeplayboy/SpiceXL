@@ -73,6 +73,10 @@ This release documents the playback behavior clearly so a client-side fix is not
 - A route that fails after a seek may trigger bounded recovery or a different available route; that does not create a missing quality or language variant on the backend.
 - The client cannot manufacture a native-language 720p/1080p/4K variant that the provider did not publish.
 
+### Practical language and quality tip
+
+If you are not looking for the English version, do not judge a server only by its rating. Some lower-rated or alternate server entries are the ones that expose the title's native-language audio and additional quality choices. Open the server/quality selector, try the available alternate entries, and check the language and quality shown by the player before settling on one. For example, a title may offer its native language in 720p or 1080p through an alternate route even when the highest-rated route starts in English or exposes fewer choices. This is a provider-availability workaround, not a guarantee for every title; the available variants still depend on what the upstream service publishes.
+
 For the full boundary between app fixes and provider limitations, see [Playback status](docs/PLAYBACK_STATUS.md). No private endpoints, raw media URLs, credentials, cookies, or tokens are published in this repository.
 
 ## Download
