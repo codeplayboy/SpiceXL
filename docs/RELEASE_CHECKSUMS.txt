@@ -1,7 +1,6 @@
-SpiceXL 1.0.9 SHA-256
+SpiceXL 1.1.0 SHA-256
 
-SpiceXL-Android-v1.0.9.apk
-1D2AA598B91E8017EB76914BAB1F873ACFF96D471749EA9DD396F62209D613FD
+SpiceXL-Android-v1.1.0.apk
+CCAC529153830057719471459D4FC50B01583BF2C54E81BA212EE28C08946165
 
-SpiceXL-Windows-Setup-v1.0.9.exe
-64FD3A0AA9403640CAF6D339F8F321396AA17D19970BEE3E27B9715124AC6C92
+The Windows 1.1.0 checksum will be added only when a matching Windows 1.1.0 installer is published. The older Windows checksum is intentionally not reused for this release.

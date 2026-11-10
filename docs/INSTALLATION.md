@@ -1,10 +1,10 @@
 # Install SpiceXL
 
-Download the matching file from the [SpiceXL v1.0.0 release](https://github.com/codeplayboy/SpiceXL/releases/tag/v1.0.0). Keep the installer from the release page; do not download similarly named files from third-party mirrors.
+Download the matching file from the [SpiceXL v1.1.0 release](https://github.com/codeplayboy/SpiceXL/releases/tag/v1.1.0). Keep the installer from the release page; do not download similarly named files from third-party mirrors.
 
 ## Windows
 
-1. Download **`SpiceXL-Windows-Setup-v1.0.0.exe`**.
+1. Download **`SpiceXL-Windows-Setup-v1.1.0.exe`** if it is included in the release.
 2. Open the downloaded file. If Windows SmartScreen appears because this installer is not code-signed, verify that the filename matches the release, then choose **More info → Run anyway** if you trust this download.
 3. In the setup wizard, choose **Only for me / current user** if the install-scope page appears. Do not choose an all-users option. You can choose an install folder, then select **Install**.
 4. Start SpiceXL from the **SpiceXL** desktop shortcut or the Start menu.
@@ -15,7 +15,7 @@ If Windows requests administrator access or offers only an all-users installatio
 
 ## Android
 
-1. Download **`SpiceXL-Android-v1.0.0.apk`** on your Android device.
+1. Download **`SpiceXL-Android-v1.1.0.apk`** on your Android device.
 2. Open the APK from Downloads and review Android’s install prompt.
 3. If Android asks, allow your browser or file manager to install apps from this source, then return to the installer and tap **Install**.
 4. Open SpiceXL from the app drawer.
