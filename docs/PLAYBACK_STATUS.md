@@ -35,6 +35,8 @@ This is a practical provider-availability workaround and is now documented so us
 - Recovery is bounded and duplicate transitions are guarded.
 - A real media failure can move to another available route without changing subtitle preferences.
 - The original-language preference is applied before generic route labels.
+- Server discovery no longer truncates the provider list; every discovered route is retained for selection and fallback while the established priority order remains intact.
+- Episode transitions preserve the selected logical server when the same route is returned for the next episode, even when the provider rotates the underlying URL.
 - The player uses real media completion for episode advancement, while the Next Episode control appears in the configured pre-finish window.
 
 ### Not fixable solely in the client

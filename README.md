@@ -65,6 +65,8 @@ This release documents the playback behavior clearly so a client-side fix is not
 - Manual seeking still receives the appropriate seeking state, while subtitle behavior and user-selected language preferences remain unchanged.
 - Playback recovery remains bounded and avoids duplicate transitions during a real media failure.
 - The compact Next Episode flow remains based on actual playback completion, with the pre-finish control shown during the configured notice window.
+- All discovered server routes remain available for selection and fallback while the existing provider priority is preserved.
+- The selected logical server is carried into the next episode when that route is available, even if its episode URL changes.
 
 ### Still provider-dependent
 
