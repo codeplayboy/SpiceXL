@@ -1,6 +1,6 @@
 SpiceXL 1.1.0 SHA-256
 
 SpiceXL-Android-v1.1.0.apk
-CCAC529153830057719471459D4FC50B01583BF2C54E81BA212EE28C08946165
+48607DAA36BC870BD959867A77258B997089653F69549EF20C8D5666B3838F27
 
 The Windows 1.1.0 checksum will be added only when a matching Windows 1.1.0 installer is published. The older Windows checksum is intentionally not reused for this release.
