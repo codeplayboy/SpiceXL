@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/assets/spicexl-hero-v2.svg" alt="SpiceXL - watch what moves you" width="100%">
+  <img src="docs/assets/spicexl-showcase-banner.png" alt="SpiceXL - watch what moves you" width="100%">
   <br><br>
   <a href="https://github.com/codeplayboy/SpiceXL/releases/tag/v1.1.1"><img src="https://img.shields.io/github/v/release/codeplayboy/SpiceXL?style=flat-square&color=28d7f2&label=official%20release" alt="Official release"></a>
   <a href="https://github.com/codeplayboy/SpiceXL/releases/tag/v1.1.1"><img src="https://img.shields.io/github/downloads/codeplayboy/SpiceXL/v1.1.1/total?style=flat-square&color=ff895c&label=downloads" alt="Downloads"></a>
