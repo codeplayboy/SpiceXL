@@ -14,7 +14,7 @@
   <path d="M610 675C870 560 1000 575 1490 135" fill="none" stroke="url(#line)" stroke-width="3" filter="url(#soft)"><animate attributeName="opacity" values=".25;.9;.25" dur="5s" repeatCount="indefinite"/></path>
   <circle cx="1220" cy="260" r="120" fill="#44ddff" opacity=".1" filter="url(#blur)"><animateTransform attributeName="transform" type="translate" values="0 0;24 -12;0 0" dur="8s" repeatCount="indefinite"/></circle>
   <g transform="translate(105 170)">
-    <circle cx="36" cy="42" r="33" fill="#43dcf7" opacity=".14"/><path d="M36 8c-15 12-22 25-18 37-9 5-14 14-10 27 5-7 10-10 17-11-2 10 3 18 13 25 2-10 8-16 17-20 8-4 12-13 5-24-3 8-9 12-16 13 6-12 4-29-8-47z" fill="#41def8"/><path d="M23 57c10 2 21 0 30-7-3 10-10 18-18 22-7-4-11-9-12-15z" fill="#a6f5ff" opacity=".7"/>
+    <image href="../media/brand-mark.webp" x="0" y="0" width="76" height="84" preserveAspectRatio="xMidYMid meet"/>
     <text x="94" y="58" fill="#f1f7fb" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="700" letter-spacing="-3">Spice<tspan fill="#ff895c">XL</tspan></text><text x="98" y="105" fill="#8da4b8" font-family="Arial,Helvetica,sans-serif" font-size="16" letter-spacing="5">WATCH WHAT MOVES YOU</text>
   </g>
   <g transform="translate(108 400)" opacity=".6"><rect width="390" height="1" fill="#75edff"/><rect y="38" width="230" height="1" fill="#ff895c" opacity=".7"/></g>
