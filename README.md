@@ -42,6 +42,18 @@ The repository intentionally publishes the official distributables and the produ
 
 More product captures are available in [`docs/media`](docs/media/), including search, detail, brand, and motion previews.
 
+### Windows desktop
+
+The Windows build has its own wide-screen experience: a scene-led discovery home, cinematic detail pages, and a desktop playback surface designed for larger displays.
+
+| Desktop discovery | Detail page | Desktop player |
+|:---:|:---:|:---:|
+| <img src="docs/screenshots/windows/discover.png" alt="SpiceXL Windows discovery screen" width="390"> | <img src="docs/screenshots/windows/detail.png" alt="SpiceXL Windows detail page" width="390"> | <img src="docs/screenshots/windows/player.png" alt="SpiceXL Windows player" width="390"> |
+
+### Android mobile
+
+The Android layout keeps the same visual language while adapting rails, controls, safe areas, and touch targets for portrait screens.
+
 ## Product principles
 
 | Principle | How SpiceXL approaches it |
