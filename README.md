@@ -3,14 +3,17 @@
   <br><br>
   <a href="https://github.com/codeplayboy/SpiceXL/releases/tag/v1.1.1"><img src="https://img.shields.io/github/v/release/codeplayboy/SpiceXL?style=flat-square&color=28d7f2&label=official%20release" alt="Official release"></a>
   <a href="https://github.com/codeplayboy/SpiceXL/releases/tag/v1.1.1"><img src="https://img.shields.io/github/downloads/codeplayboy/SpiceXL/v1.1.1/total?style=flat-square&color=ff895c&label=downloads" alt="Downloads"></a>
-  <a href="SECURITY.md"><img src="https://img.shields.io/badge/security-no%20secrets%20published-28d7f2?style=flat-square" alt="No secrets published"></a>
   <p><strong>A cinematic catalogue client built for fast discovery, calm navigation, and confident playback.</strong></p>
   <p>Android + Windows · dark interface · responsive rails · resilient playback diagnostics</p>
 </div>
 
-## The experience
+## Why SpiceXL exists
 
-SpiceXL is a polished streaming catalogue interface for discovering movies, series, anime, TV, and kids content. It keeps the visual language cinematic while the interaction model stays quick: cached sections return immediately, rails hydrate progressively, and playback diagnostics make source selection legible instead of mysterious.
+SpiceXL began as a personal answer to a familiar frustration: finding something worth watching should feel exciting, not exhausting. The app is built around that feeling. It brings movies, series, anime, TV, and kids content into one focused space where the artwork has room to breathe, the catalogue feels alive, and the next choice is always close.
+
+For me, SpiceXL is more than a catalogue. It is a small piece of a better night in: less hunting, fewer dead ends, a beautiful place to keep discoveries, and a player that gets out of the way when the story starts. Every screen is designed to make watching feel immediate and intentional.
+
+The visual language is cinematic, but the product is practical underneath: cached sections return quickly, rails hydrate progressively, browsing state stays put, and playback diagnostics make source selection understandable instead of mysterious.
 
 <p align="center"><img src="docs/media/motion-preview.gif" alt="SpiceXL animated catalogue preview" width="760"></p>
 
@@ -61,11 +64,13 @@ The Windows installer was preserved as requested. It was not replaced by the rep
 
 The Android package is the official finalized project build for direct installation and uses development signing. It is not Play Store production-signed.
 
-## Security boundary
+## Security, explained plainly
 
-This public repository contains no `.env` files, API keys, provider credentials, session cookies, access tokens, private signing keys, or unpublished infrastructure details. See [`SECURITY.md`](SECURITY.md) for the audit boundary and contribution rules.
+SpiceXL is designed so the app can be public without exposing the private systems that power it. The Android and Windows clients request catalogue metadata and playback routes through an authorized HTTPS backend. Private credentials, provider access, session cookies, and signing material stay on protected services and are never part of the app experience.
 
-SpiceXL consumes metadata and playback routes returned by an authorized HTTPS backend. It does not include scraping, decryption, DRM bypassing, or embedded private APIs. A client cannot safely create a route that the configured backend does not return.
+That boundary matters: the client does not scrape, decrypt, bypass DRM, or invent playback routes. It can only display the title information and sources that the backend safely returns. This keeps the public app auditable, protects upstream integrations, and means a missing route is reported honestly rather than disguised as a fake success.
+
+The repository also blocks common local secret files and signing artifacts from being committed. For the complete contributor policy, see [`SECURITY.md`](SECURITY.md).
 
 ## Known limitations
 
