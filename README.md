@@ -1,110 +1,108 @@
-# SpiceXL
+<div align="center">
+  <img src="docs/assets/spicexl-hero.svg" alt="SpiceXL - watch what moves you" width="100%">
+  <br><br>
+  <a href="https://github.com/codeplayboy/SpiceXL/releases/tag/v1.1.1"><img src="https://img.shields.io/github/v/release/codeplayboy/SpiceXL?style=flat-square&color=28d7f2&label=official%20release" alt="Official release"></a>
+  <a href="https://github.com/codeplayboy/SpiceXL/releases/tag/v1.1.1"><img src="https://img.shields.io/github/downloads/codeplayboy/SpiceXL/v1.1.1/total?style=flat-square&color=ff895c&label=downloads" alt="Downloads"></a>
+  <a href="SECURITY.md"><img src="https://img.shields.io/badge/security-no%20secrets%20published-28d7f2?style=flat-square" alt="No secrets published"></a>
+  <p><strong>A cinematic catalogue client built for fast discovery, calm navigation, and confident playback.</strong></p>
+  <p>Android + Windows · dark interface · responsive rails · resilient playback diagnostics</p>
+</div>
 
-SpiceXL is a responsive streaming catalogue client with a Capacitor-powered Android shell and an Electron Windows target. It is designed around fast, state-preserving navigation, resilient catalogue hydration, and explicit playback-source diagnostics.
+## The experience
 
-SpiceXL only consumes metadata and playback routes returned by an authorized backend. It does not include scraping, decryption, DRM bypassing, provider credentials, or embedded private APIs.
+SpiceXL is a polished streaming catalogue interface for discovering movies, series, anime, TV, and kids content. It keeps the visual language cinematic while the interaction model stays quick: cached sections return immediately, rails hydrate progressively, and playback diagnostics make source selection legible instead of mysterious.
 
-## Official release — SpiceXL Android v1.1.1
+<p align="center"><img src="docs/media/motion-preview.gif" alt="SpiceXL animated catalogue preview" width="760"></p>
 
-This is the finalized official SpiceXL v1.1.1 Android build. It includes the Home Anime editorial rail update and the latest progressive-loading fix.
+The repository intentionally publishes the official distributables and the product story without publishing backend implementation secrets, provider credentials, or private infrastructure details.
 
-### What is fixed
+## What ships in official v1.1.1
 
-- The Home page has a dedicated **Anime** editorial rail containing high-signal titles across action, shonen, thriller, psychological, fantasy, science fiction, romance, anime films, sports, comedy, and genre classics.
-- The editorial Anime rail is isolated from **Recent Anime**. Recent Anime continues to use the latest verified release feed and is not randomized or replaced.
-- Stale catalogue refreshes can no longer overwrite the Home Anime editorial selection with the newest-release feed.
-- The editorial selection is cached independently and deterministically shuffled per three-day cycle. It remains stable during a cycle and changes when the next cycle begins.
-- Anime cards render progressively: the first verified search batch is committed immediately while the remaining curated queries continue in the background.
-- The Home rail updater replaces stale cached Anime cards instead of append-only hydration, preventing recent titles from remaining at the front of the editorial rail.
-- The official Android APK was rebuilt, installed on the connected TECNO KI7 test device, and relaunched successfully.
+- A dedicated Home Anime editorial rail with genre-balanced, high-signal titles.
+- Recent Anime remains a separate verified release feed and is never replaced by the editorial rail.
+- Independent three-day editorial caching with deterministic cycle shuffling.
+- Progressive first-batch rendering so the Home rail becomes useful before background enrichment finishes.
+- Stable catalogue and detail-page presentation across Android and Windows.
+- Compact Next Episode behavior, real playback-ended transitions, preserved fullscreen state, and no duplicate episode changes.
+- Provider diagnostics that distinguish runtime availability from advertised language labels.
+- An official Android APK and the already-finalized Windows installer in the same release line.
 
-### What remains backend-dependent
+## A small visual tour
 
-- A title can still be unavailable when the authorized backend returns no metadata, no artwork, or no playback route. The client cannot manufacture a provider route safely.
-- Provider names and advertised language labels are not proof of the actual stream language. Verified stream metadata remains authoritative; mislabeled upstream routes require backend correction.
-- Playback quality and audio-track availability depend on the selected provider's manifest. The client preserves explicit user choices but cannot add a missing 720p, 1080p, 4K, or native-language track that the provider does not expose.
-- The current phone validation was an install/relaunch verification. A full three-day timer cycle and every provider route cannot be measured in a single session.
-- The APK is the official finalized project build and uses development signing for direct installation. It is not Play Store production-signed.
+| Home discovery | Featured catalogue | Playback surface |
+|:---:|:---:|:---:|
+| <img src="docs/media/home-featured.webp" alt="SpiceXL Home discovery" width="250"> | <img src="docs/media/movies.webp" alt="SpiceXL movie catalogue" width="250"> | <img src="docs/media/player.webp" alt="SpiceXL playback screen" width="250"> |
 
-### Editorial refresh model
+| Series | Anime | Kids |
+|:---:|:---:|:---:|
+| <img src="docs/media/series.webp" alt="SpiceXL series catalogue" width="250"> | <img src="docs/media/anime.webp" alt="SpiceXL anime catalogue" width="250"> | <img src="docs/media/kids.webp" alt="SpiceXL kids catalogue" width="250"> |
 
-The main Anime rail uses a separate local cache key and a three-day editorial window:
+More product captures are available in [`docs/media`](docs/media/), including search, detail, brand, and motion previews.
 
-1. Load the last valid editorial selection immediately when available.
-2. Render the first verified batch without waiting for the full query set.
-3. Continue collecting and deduplicating the remaining title metadata in the background.
-4. Shuffle the completed pool using the current three-day cycle seed.
-5. Persist the completed selection and schedule the next refresh.
+## Product principles
 
-The Recent Anime rail does not share this cache, timer, shuffle, or replacement path.
+| Principle | How SpiceXL approaches it |
+| --- | --- |
+| Immediate discovery | Reuse cached catalogue snapshots and preserve browsing state when returning to a section. |
+| Quiet loading | Keep already-rendered content visible and use progressive hydration instead of blocking the whole page. |
+| Honest playback | Treat actual route and stream metadata as authoritative; provider labels are never proof of language or quality. |
+| Motion with purpose | Use short, lightweight transitions and a restrained animated brand layer instead of decorative UI noise. |
+| Device respect | Adapt the layout to Android safe areas, touch targets, orientation, and the Windows desktop shell. |
+
+## Downloads
+
+### Official v1.1.1 release
+
+- [Android APK](https://github.com/codeplayboy/SpiceXL/releases/download/v1.1.1/app-debug.apk) - direct install package for Android testing devices.
+- [Windows installer](https://github.com/codeplayboy/SpiceXL/releases/download/v1.1.1/SpiceXL.Setup.1.1.1.exe) - the already-finalized official Windows build.
+- [Release notes and checksums](https://github.com/codeplayboy/SpiceXL/releases/tag/v1.1.1)
+
+The Windows installer was preserved as requested. It was not replaced by the repository presentation work.
+
+The Android package is the official finalized project build for direct installation and uses development signing. It is not Play Store production-signed.
+
+## Security boundary
+
+This public repository contains no `.env` files, API keys, provider credentials, session cookies, access tokens, private signing keys, or unpublished infrastructure details. See [`SECURITY.md`](SECURITY.md) for the audit boundary and contribution rules.
+
+SpiceXL consumes metadata and playback routes returned by an authorized HTTPS backend. It does not include scraping, decryption, DRM bypassing, or embedded private APIs. A client cannot safely create a route that the configured backend does not return.
+
+## Known limitations
+
+- Artwork, playback quality, audio tracks, and route availability remain dependent on upstream metadata and provider manifests.
+- Advertised language labels may be incorrect upstream. Verified stream metadata is the authority; a mislabeled source requires backend correction.
+- The direct-install Android artifact is not a store-signed production release.
+- A full provider matrix and a complete three-day refresh cycle require runtime testing against the authorized backend, not a static repository inspection.
 
 ## Build verification
 
-The official Android build was checked with `node --check app.js`, synchronized with Capacitor, assembled with Gradle, installed through ADB, force-relaunched, and started with package `com.spicexl.app`.
-
-APK output:
-
-`android/app/build/outputs/apk/debug/app-debug.apk`
-
-### Official distributables on GitHub
-
-- `SpiceXL-Android-v1.1.1.apk` — official Android package for direct installation.
-- `SpiceXL Setup 1.1.1.exe` — the already finalized official Windows installer.
-
-Both distributables are published together in the repository so the Android and Windows downloads remain easy to identify as the same SpiceXL release line.
-
-The build still emits existing Gradle warnings about `flatDir`, SDK XML compatibility, and deprecated Gradle features. They do not prevent installation, but should be cleaned up for a future store submission.
-
-## Local development
+The Android release line was checked with JavaScript syntax validation, Capacitor synchronization, Gradle assembly, ADB installation, force relaunch, and package startup on the connected TECNO KI7 test device. Existing Gradle warnings about `flatDir`, SDK XML compatibility, and deprecated Gradle features do not prevent installation.
 
 ```bash
 npm install
-npm start
-```
-
-Run the checks with:
-
-```bash
 npm run check
 npm test
-```
-
-## Configuration and secrets
-
-Copy `.env.example` only for server/build tooling. Do **not** ship provider credentials, cookies, API keys, or tokens in a web build or APK—those values are extractable. Keep all secrets in the API service and expose only a public HTTPS API gateway to the client.
-
-For a hosted web build, set a public `window.SPICEXL_CONFIG` object before loading `app.js`:
-
-```html
-<script>window.SPICEXL_CONFIG = { apiBases: ['https://api.example.com'] };</script>
-```
-
-## Provider reliability
-
-Each API endpoint is health-ranked and temporarily cooled down after a failure. Playback sources are identity-validated, sorted by health/quality, and fail over only to another route supplied by the configured backend. Playback failures are recorded locally for the session; no source is retried while it is in cooldown.
-
-## Android APK
-
-Prerequisites: Node 20+, Android Studio with Android SDK, and a JDK compatible with the Android Gradle Plugin installed by Capacitor.
-
-```bash
-npm run android:prepare
-npm run android:add       # first time only
 npm run android:sync
-npm run android:open
+npm run android:build
 ```
 
-Use Android Studio's **Build > Generate Signed Bundle / APK** for a release. Do not commit signing keys or `key.properties`; use CI secrets or Android Studio's protected signing flow.
-
-The Android shell uses the same adaptive layout, touch targets, safe-area spacing, native back behavior, and app background as the web version. Network traffic requires HTTPS; mixed content is disabled.
-
-## Windows app
-
-The Windows target is a separate Electron application. It starts its own local catalogue proxy, so it does not rely on a browser tab or the Android Capacitor shell.
+For Windows development:
 
 ```bash
 npm run desktop:dev
 npm run desktop:build
 ```
 
-The installer is written to `release/windows/`. It creates Start Menu and optional desktop shortcuts. The Android project remains under `android/` and continues to be built only with the `android:*` commands.
+Do not commit `key.properties`, signing keys, `.env` files, or generated unpacked installers. Use protected CI secrets or Android Studio's signing flow for a store release.
+
+## Documentation
+
+- [`CHANGELOG.md`](CHANGELOG.md) - official release history and known limitations.
+- [`docs/INSTALLATION.md`](docs/INSTALLATION.md) - Android and Windows installation notes.
+- [`docs/PLAYBACK_STATUS.md`](docs/PLAYBACK_STATUS.md) - source, language, and quality behavior.
+- [`docs/RELEASE_CHECKSUMS.txt`](docs/RELEASE_CHECKSUMS.txt) - published artifact checksums.
+- [`SECURITY.md`](SECURITY.md) - repository security boundary.
+
+<div align="center">
+  <sub>SpiceXL · watch what moves you</sub>
+</div>

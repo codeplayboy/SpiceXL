@@ -1,0 +1,26 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.keystore
+key.properties
+secrets/
+credentials/
+cookies/
+
+# Dependencies and generated output
+node_modules/
+dist/
+build/
+.gradle/
+release/windows/win-unpacked/
+
+# Local tooling and OS files
+.idea/
+.vscode/
+*.log
+Thumbs.db
+.DS_Store
