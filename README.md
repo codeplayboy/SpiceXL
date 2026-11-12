@@ -46,6 +46,13 @@ APK output:
 
 `android/app/build/outputs/apk/debug/app-debug.apk`
 
+### Official distributables on GitHub
+
+- `SpiceXL-Android-v1.1.1.apk` — official Android package for direct installation.
+- `SpiceXL Setup 1.1.1.exe` — the already finalized official Windows installer.
+
+Both distributables are published together in the repository so the Android and Windows downloads remain easy to identify as the same SpiceXL release line.
+
 The build still emits existing Gradle warnings about `flatDir`, SDK XML compatibility, and deprecated Gradle features. They do not prevent installation, but should be cleaned up for a future store submission.
 
 ## Local development
