@@ -1,6 +1,6 @@
 # SpiceXL changelog
 
-## 1.1.1 — Home Anime editorial rail
+## 1.1.1 — Official SpiceXL Android release
 
 ### Added
 
@@ -19,7 +19,7 @@
 ### Known limitations
 
 - Provider routes, language tracks, artwork, and quality variants remain dependent on the authorized backend response.
-- This release was verified as an Android debug installation and launch, not as a signed production distribution.
+- The official finalized APK was verified through Android installation and launch. It uses development signing for direct installation and is not Play Store production-signed.
 - Three-day rotation behavior is implemented but cannot be observed end-to-end without waiting for the refresh window or using a controlled clock in a test harness.
 
 ### Privacy and security

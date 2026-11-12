@@ -4,9 +4,9 @@ SpiceXL is a responsive streaming catalogue client with a Capacitor-powered Andr
 
 SpiceXL only consumes metadata and playback routes returned by an authorized backend. It does not include scraping, decryption, DRM bypassing, provider credentials, or embedded private APIs.
 
-## Current release — 1.1.1 Android debug build
+## Official release — SpiceXL Android v1.1.1
 
-This build includes the Home Anime editorial rail update and the latest progressive-loading fix.
+This is the finalized official SpiceXL v1.1.1 Android build. It includes the Home Anime editorial rail update and the latest progressive-loading fix.
 
 ### What is fixed
 
@@ -16,7 +16,7 @@ This build includes the Home Anime editorial rail update and the latest progress
 - The editorial selection is cached independently and deterministically shuffled per three-day cycle. It remains stable during a cycle and changes when the next cycle begins.
 - Anime cards render progressively: the first verified search batch is committed immediately while the remaining curated queries continue in the background.
 - The Home rail updater replaces stale cached Anime cards instead of append-only hydration, preventing recent titles from remaining at the front of the editorial rail.
-- The Android debug APK was rebuilt, installed on the connected TECNO KI7 test device, and relaunched successfully.
+- The official Android APK was rebuilt, installed on the connected TECNO KI7 test device, and relaunched successfully.
 
 ### What remains backend-dependent
 
@@ -24,7 +24,7 @@ This build includes the Home Anime editorial rail update and the latest progress
 - Provider names and advertised language labels are not proof of the actual stream language. Verified stream metadata remains authoritative; mislabeled upstream routes require backend correction.
 - Playback quality and audio-track availability depend on the selected provider's manifest. The client preserves explicit user choices but cannot add a missing 720p, 1080p, 4K, or native-language track that the provider does not expose.
 - The current phone validation was an install/relaunch verification. A full three-day timer cycle and every provider route cannot be measured in a single session.
-- The debug APK is not a signed production release. Use a protected signing configuration for distribution.
+- The APK is the official finalized project build and uses development signing for direct installation. It is not Play Store production-signed.
 
 ### Editorial refresh model
 
@@ -40,13 +40,13 @@ The Recent Anime rail does not share this cache, timer, shuffle, or replacement 
 
 ## Build verification
 
-The latest Android build was checked with `node --check app.js`, synchronized with Capacitor, assembled with Gradle, installed through ADB, force-relaunched, and started with package `com.spicexl.app`.
+The official Android build was checked with `node --check app.js`, synchronized with Capacitor, assembled with Gradle, installed through ADB, force-relaunched, and started with package `com.spicexl.app`.
 
 APK output:
 
 `android/app/build/outputs/apk/debug/app-debug.apk`
 
-The build still emits the existing Gradle warnings about `flatDir`, SDK XML compatibility, and deprecated Gradle features. They do not prevent this debug build from assembling, but they should be cleaned up before a production release.
+The build still emits existing Gradle warnings about `flatDir`, SDK XML compatibility, and deprecated Gradle features. They do not prevent installation, but should be cleaned up for a future store submission.
 
 ## Local development
 
