@@ -1,100 +1,103 @@
-<div align="center">
-
-<img src="docs/media/hero.webp" alt="Midnight navy and cyan SpiceXL atmosphere" width="100%" />
-
-<img src="docs/media/brand-mark.webp" alt="SpiceXL brand mark" height="64" />
-
 # SpiceXL
 
-### A world of stories, in one place.
+SpiceXL is a responsive streaming catalogue client with a Capacitor-powered Android shell and an Electron Windows target. It is designed around fast, state-preserving navigation, resilient catalogue hydration, and explicit playback-source diagnostics.
 
-Discover movies, series, anime, and family picks in a dark, cinematic experience for Android and Windows.
+SpiceXL only consumes metadata and playback routes returned by an authorized backend. It does not include scraping, decryption, DRM bypassing, provider credentials, or embedded private APIs.
 
-[**Get SpiceXL 1.1.0**](https://github.com/codeplayboy/SpiceXL/releases/tag/v1.1.0) · [Windows setup guide](docs/INSTALLATION.md#windows) · [Android setup guide](docs/INSTALLATION.md#android) · [Playback status](docs/PLAYBACK_STATUS.md)
+## Current release — 1.1.1 Android debug build
 
-<br />
+This build includes the Home Anime editorial rail update and the latest progressive-loading fix.
 
-<img src="docs/media/motion-preview.gif" alt="Cinematic SpiceXL interface and title artwork in motion" width="88%" />
+### What is fixed
 
-<sub>Real SpiceXL interface footage · 30-second launch cut excerpt</sub>
+- The Home page has a dedicated **Anime** editorial rail containing high-signal titles across action, shonen, thriller, psychological, fantasy, science fiction, romance, anime films, sports, comedy, and genre classics.
+- The editorial Anime rail is isolated from **Recent Anime**. Recent Anime continues to use the latest verified release feed and is not randomized or replaced.
+- Stale catalogue refreshes can no longer overwrite the Home Anime editorial selection with the newest-release feed.
+- The editorial selection is cached independently and deterministically shuffled per three-day cycle. It remains stable during a cycle and changes when the next cycle begins.
+- Anime cards render progressively: the first verified search batch is committed immediately while the remaining curated queries continue in the background.
+- The Home rail updater replaces stale cached Anime cards instead of append-only hydration, preventing recent titles from remaining at the front of the editorial rail.
+- The Android debug APK was rebuilt, installed on the connected TECNO KI7 test device, and relaunched successfully.
 
-</div>
+### What remains backend-dependent
 
----
+- A title can still be unavailable when the authorized backend returns no metadata, no artwork, or no playback route. The client cannot manufacture a provider route safely.
+- Provider names and advertised language labels are not proof of the actual stream language. Verified stream metadata remains authoritative; mislabeled upstream routes require backend correction.
+- Playback quality and audio-track availability depend on the selected provider's manifest. The client preserves explicit user choices but cannot add a missing 720p, 1080p, 4K, or native-language track that the provider does not expose.
+- The current phone validation was an install/relaunch verification. A full three-day timer cycle and every provider route cannot be measured in a single session.
+- The debug APK is not a signed production release. Use a protected signing configuration for distribution.
 
-## A closer look
+### Editorial refresh model
 
-Browse the real app screens. Select any image to see it at full size.
+The main Anime rail uses a separate local cache key and a three-day editorial window:
 
-| Home | Movies | Series |
-|:---:|:---:|:---:|
-| [<img src="docs/media/home-featured.webp" alt="SpiceXL home screen" width="210" />](docs/media/home-featured.webp) | [<img src="docs/media/movies.webp" alt="SpiceXL movie catalogue" width="210" />](docs/media/movies.webp) | [<img src="docs/media/series.webp" alt="SpiceXL series catalogue" width="210" />](docs/media/series.webp) |
+1. Load the last valid editorial selection immediately when available.
+2. Render the first verified batch without waiting for the full query set.
+3. Continue collecting and deduplicating the remaining title metadata in the background.
+4. Shuffle the completed pool using the current three-day cycle seed.
+5. Persist the completed selection and schedule the next refresh.
 
-| Anime | Kids | Search |
-|:---:|:---:|:---:|
-| [<img src="docs/media/anime.webp" alt="SpiceXL anime catalogue" width="210" />](docs/media/anime.webp) | [<img src="docs/media/kids.webp" alt="SpiceXL Kids catalogue" width="210" />](docs/media/kids.webp) | [<img src="docs/media/search.webp" alt="SpiceXL search screen" width="210" />](docs/media/search.webp) |
+The Recent Anime rail does not share this cache, timer, shuffle, or replacement path.
 
-<details>
-<summary>See the player screen</summary>
+## Build verification
 
-<br />
+The latest Android build was checked with `node --check app.js`, synchronized with Capacitor, assembled with Gradle, installed through ADB, force-relaunched, and started with package `com.spicexl.app`.
 
-[<img src="docs/media/player.webp" alt="SpiceXL player and title details" width="420" />](docs/media/player.webp)
+APK output:
 
-</details>
+`android/app/build/outputs/apk/debug/app-debug.apk`
 
-## What’s inside
+The build still emits the existing Gradle warnings about `flatDir`, SDK XML compatibility, and deprecated Gradle features. They do not prevent this debug build from assembling, but they should be cleaned up before a production release.
 
-- Five destinations: Home, Movies, TV, Anime, and Kids.
-- Search, saved titles, and watch history.
-- Title details and episode browsing for series.
-- A built-in playback experience with available player controls.
+## Local development
 
-Content and playback availability can vary by title, network, and region.
+```bash
+npm install
+npm start
+```
 
-## 1.1.0 release status
+Run the checks with:
 
-This release documents the playback behavior clearly so a client-side fix is not confused with a provider-side data problem.
+```bash
+npm run check
+npm test
+```
 
-### Fixed in the app
+## Configuration and secrets
 
-- Automatic audio selection now prioritizes the title's original language when reliable language metadata is available.
-- A generic provider or server name is no longer treated as proof of the language that will be heard.
-- Once a media manifest is available, its actual audio-track metadata is authoritative.
-- The player no longer reports ordinary internal buffering or recovery seeks as repeated user “Seeking…” actions.
-- Manual seeking still receives the appropriate seeking state, while subtitle behavior and user-selected language preferences remain unchanged.
-- Playback recovery remains bounded and avoids duplicate transitions during a real media failure.
-- The compact Next Episode flow remains based on actual playback completion, with the pre-finish control shown during the configured notice window.
-- All discovered server routes remain available for selection and fallback while the existing provider priority is preserved.
-- The selected logical server is carried into the next episode when that route is available, even if its episode URL changes.
+Copy `.env.example` only for server/build tooling. Do **not** ship provider credentials, cookies, API keys, or tokens in a web build or APK—those values are extractable. Keep all secrets in the API service and expose only a public HTTPS API gateway to the client.
 
-### Still provider-dependent
+For a hosted web build, set a public `window.SPICEXL_CONFIG` object before loading `app.js`:
 
-- A provider can incorrectly label a route. If that route does not expose reliable audio-track metadata, the client cannot prove its audible language without guessing.
-- Available qualities, language variants, subtitles, and playback stability may differ by title, provider route, network, and region.
-- A route that fails after a seek may trigger bounded recovery or a different available route; that does not create a missing quality or language variant on the backend.
-- The client cannot manufacture a native-language 720p/1080p/4K variant that the provider did not publish.
+```html
+<script>window.SPICEXL_CONFIG = { apiBases: ['https://api.example.com'] };</script>
+```
 
-### Practical language and quality tip
+## Provider reliability
 
-If you are not looking for the English version, do not judge a server only by its rating. Some lower-rated or alternate server entries are the ones that expose the title's native-language audio and additional quality choices. Open the server/quality selector, try the available alternate entries, and check the language and quality shown by the player before settling on one. For example, a title may offer its native language in 720p or 1080p through an alternate route even when the highest-rated route starts in English or exposes fewer choices. This is a provider-availability workaround, not a guarantee for every title; the available variants still depend on what the upstream service publishes.
+Each API endpoint is health-ranked and temporarily cooled down after a failure. Playback sources are identity-validated, sorted by health/quality, and fail over only to another route supplied by the configured backend. Playback failures are recorded locally for the session; no source is retried while it is in cooldown.
 
-For the full boundary between app fixes and provider limitations, see [Playback status](docs/PLAYBACK_STATUS.md). No private endpoints, raw media URLs, credentials, cookies, or tokens are published in this repository.
+## Android APK
 
-## Download
+Prerequisites: Node 20+, Android Studio with Android SDK, and a JDK compatible with the Android Gradle Plugin installed by Capacitor.
 
-Choose the installer for your device from the [SpiceXL v1.1.0 release](https://github.com/codeplayboy/SpiceXL/releases/tag/v1.1.0):
+```bash
+npm run android:prepare
+npm run android:add       # first time only
+npm run android:sync
+npm run android:open
+```
 
-- **[Download for Android](https://github.com/codeplayboy/SpiceXL/releases/download/v1.1.0/SpiceXL-Android-v1.1.0.apk)** — `SpiceXL-Android-v1.1.0.apk`
-- **[Download for Windows 64-bit](https://github.com/codeplayboy/SpiceXL/releases/download/v1.1.0/SpiceXL-Windows-Setup-v1.1.0.exe)** — `SpiceXL-Windows-Setup-v1.1.0.exe` (if included in the release)
+Use Android Studio's **Build > Generate Signed Bundle / APK** for a release. Do not commit signing keys or `key.properties`; use CI secrets or Android Studio's protected signing flow.
 
-Follow the illustrated [installation guide](docs/INSTALLATION.md) for the first launch and removal steps.
-You can verify either download against the published [SHA-256 checksums](docs/RELEASE_CHECKSUMS.txt).
+The Android shell uses the same adaptive layout, touch targets, safe-area spacing, native back behavior, and app background as the web version. Network traffic requires HTTPS; mixed content is disabled.
 
-## About the creator
+## Windows app
 
-SpiceXL is an independent project by [@codeplayboy](https://github.com/codeplayboy). This public release repository contains the installable builds and product materials; it does not publish private application source, credentials, or signing material.
+The Windows target is a separate Electron application. It starts its own local catalogue proxy, so it does not rely on a browser tab or the Android Capacitor shell.
 
-## Release contents
+```bash
+npm run desktop:dev
+npm run desktop:build
+```
 
-The uploaded app downloads are installable release artifacts. Screenshots and the short motion preview are presentation materials; this repository does not include private application source, credentials, signing keys, provider internals, or raw playback URLs.
+The installer is written to `release/windows/`. It creates Start Menu and optional desktop shortcuts. The Android project remains under `android/` and continues to be built only with the `android:*` commands.
